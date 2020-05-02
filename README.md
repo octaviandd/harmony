@@ -1,3 +1,0 @@
-<!-- @format -->
-
-Harmony project.

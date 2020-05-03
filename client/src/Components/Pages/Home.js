@@ -9,14 +9,18 @@ import TopSongsSlide from "../Slides/TopSongsSlide";
 import SongDeconstructionSlide from "../Slides/SongDeconstructionSlide";
 import SongsRecommandationSlide from "../Slides/SongsRecommandationSlide";
 import ProfileSlide from "../Slides/ProfileSlide";
+import ReactPageScroller from "react-page-scroller";
+import LogoSlide from "../Slides/LogoSlide";
+
 export default function Home({
   userTopArtistsAllTime,
   userTopArtists6Months,
   userTopArtistsFourWeeks,
 }) {
   return (
-    <Swipes>
-      <WelcomeSlide></WelcomeSlide>
+    <ReactPageScroller>
+      <LogoSlide></LogoSlide>
+      {/* <WelcomeSlide></WelcomeSlide> */}
       <ProfileSlide></ProfileSlide>
       <ArtistsGraphSlide
         userTopArtistsAllTime={userTopArtistsAllTime}
@@ -27,10 +31,6 @@ export default function Home({
       <TopSongsSlide></TopSongsSlide>
       <SongDeconstructionSlide></SongDeconstructionSlide>
       <SongsRecommandationSlide></SongsRecommandationSlide>
-    </Swipes>
+    </ReactPageScroller>
   );
 }
-
-const Swipes = styled.div`
-  overflow: hidden;
-`;

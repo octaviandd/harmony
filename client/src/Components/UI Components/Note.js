@@ -21,51 +21,51 @@ const Note = (props) => {
   );
 };
 
-// const rotate = keyframes`
-//   0%{
-//     transform: rotateX(0deg);
-//   }
+const rotate = keyframes`
+  0%{
+    transform: rotateX(0deg);
+  }
 
-//   15%{
-//     transform: skewX(-10deg);
-//   }
+  15%{
+    transform: skewX(-10deg);
+  }
 
-//   30%{
-//     transform: skewX(10deg);
-//   }
+  30%{
+    transform: skewX(10deg);
+  }
 
-//   45%{
-//     transform: skewX(-10deg)
-//   }
-//   60%{
-//     transform: skewX(10deg)
-//   }
-//   75%{
-//     transform: skewX(-10deg)
-//   }
-//   90%{
-//     transform: skewX(10deg)
-//   }
-//   100%{
-//     transform: skewX(10deg)
-//   }
-// `;
+  45%{
+    transform: skewX(-10deg)
+  }
+  60%{
+    transform: skewX(10deg)
+  }
+  75%{
+    transform: skewX(-10deg)
+  }
+  90%{
+    transform: skewX(10deg)
+  }
+  100%{
+    transform: skewX(10deg)
+  }
+`;
 
-// const moving = keyframes`
-//   0%{
-//     transform: scale(1);
-//     opacity: 0.1
-//   }
+const moving = keyframes`
+  0%{
+    transform: scale(1);
+    opacity: 0.1
+  }
 
-//   10%{
-//     opacity: 0.4
-//   }
+  10%{
+    opacity: 0.4
+  }
 
-//   100%{
-//     transform: scale(1.2);
-//     bottom: 1000px;
-//   }
-// `;
+  100%{
+    transform: scale(1.2);
+    bottom: 1000px;
+  }
+`;
 
 const MuzicalNote = styled.div`
   position: absolute;
@@ -73,8 +73,8 @@ const MuzicalNote = styled.div`
   bottom: ${(props) => props.randomBottom}px;
   left: ${(props) => props.randomLeft}px;
   color: ${(props) => props.randomColor};
-  ${"" /* animation: ${moving} ${(props) => props.randomDuration}s linear infinite,
-    ${rotate} 5s linear infinite; */}
+  animation: ${moving} ${(props) => props.randomDuration}s linear infinite,
+    ${rotate} 5s linear infinite;
   overflow: hidden;
   z-index: 1;
 `;

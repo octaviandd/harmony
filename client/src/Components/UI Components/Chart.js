@@ -150,7 +150,7 @@ export default function Chart({ data1, data2, data3 }) {
           <button onClick={() => setAllTimeData()}>All Time</button>
         </div>
       </Filter>
-      <div style={{ marginLeft: "50px", marginTop: "200px" }} ref={ref}></div>
+      <div style={{ marginLeft: "50px", marginTop: "100px" }} ref={ref}></div>
     </React.Fragment>
   );
 }

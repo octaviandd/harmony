@@ -1,17 +1,19 @@
 <!-- @format -->
 
-Harmony project.
-
 # Harmony
 
+![](harmonylogo.png)
+
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-Fully responsive, with own server, invitations system web app using React.js, where user can easily manage invitations. Each user can create an account an manage it.
+
+### Harmony is a web application that uses the Spotify API to retrieve data about music, user profiles, user favorite selections, a filter for future recommandations, a statistical approach at dissecting user's average favorite songs by different measures such as: danceability, acousticness, durability and so on.
+
+### The application uses two routes, first route is a login page that redirects the user to Spotify Authorization page where requests for permissions is asked and login credentials. The second route is the applcation itself.
 
 Available routes:
 
 - `/home`
-- `/register`
-- `/login`
+- `/login - Spotify OAuth`
 
 ## Table of contents
 
@@ -22,25 +24,59 @@ Available routes:
 
 ## Technologies
 
+- JavaScript ES6(+)
 - React.js
-- Context API
-- React Hooks
-- Material UI
-- JavaScript ES6
-- Mongo DB
+- Spotify API
+- Express.js
+- D3.js
+- Styled Components
+- OAuth
 
 ## Setup
 
 ```bash
-  git clone https://github.com/octaviandd/invite-Me.git
+  git clone https://github.com/octaviandd/harmony.git
+
   npm install
-  npm start
+
+  cd server - node app.js
+  cd client - npm start
 ```
 
 ## Used packages and tools
 
-- React Animation [React-particle-js](https://github.com/Wufe/react-particles-js)
-- Logo generator [Hatchful](https://hatchful.shopify.com/)
-- Database [Atlas DB](https://www.mongodb.com/cloud/atlas)
+- Git
+- VSCode
+- terminal
+- PhotoShop
+- CSS Gradient
 
 ## Display
+
+### Login Page
+
+![](harmonylogin.png)
+
+### Profile Slide
+
+![](harmonyprofile.png)
+
+### Favorite Artists
+
+![](harmonyartists.png)
+
+### User's music genres graph
+
+![](harmonygenres.png)
+
+### User's favorite songs
+
+![](harmonysongs.png)
+
+### Average composition of user's songs
+
+![](harmonycomposition.png)
+
+### Music filter and recommandations
+
+![](harmonysearch.png)

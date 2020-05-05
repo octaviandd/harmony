@@ -6,9 +6,9 @@
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-### Harmony is a web application that uses the Spotify API to retrieve data about music, user profiles, user favorite selections, a filter for future recommandations, a statistical approach at dissecting user's average favorite songs by different measures such as: danceability, acousticness, durability and so on.
+#### Harmony is a web application that uses the Spotify API to retrieve data about music, user profiles, user favorite selections, a filter for future recommandations, a statistical approach at dissecting user's average favorite songs by different measures such as: danceability, acousticness, durability and so on.
 
-### The application uses two routes, first route is a login page that redirects the user to Spotify Authorization page where requests for permissions is asked and login credentials. The second route is the applcation itself.
+#### The application uses two routes, first route is a login page that redirects the user to Spotify Authorization page where requests for permissions is asked and login credentials. The second route is the applcation itself.
 
 Available routes:
 

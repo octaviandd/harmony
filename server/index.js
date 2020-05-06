@@ -8,17 +8,16 @@
  *
  * @format
  */
-require("dotenv").config();
+require("dotenv").config({ path: "../.env" });
 
 var express = require("express"); // Express web server framework
 var request = require("request"); // "Request" library
 var cors = require("cors");
 var querystring = require("querystring");
 var cookieParser = require("cookie-parser");
-require("dotenv").config();
 
-var client_id = process.env.CLIENT_ID; // Your client id
-var client_secret = process.env.CLIENT_SECRET; // Your secret
+var CLIENT_ID = process.env.CLIENT_ID; // Your client id
+var CLIENT_SECRET = process.env.CLIENT_SECRET; // Your secret
 let REDIRECT_URI = process.env.REDIRECT_URI || "http://localhost:8888/callback";
 let FRONTEND_URI = process.env.FRONTEND_URI || "http://localhost:3000";
 // var redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
@@ -64,7 +63,7 @@ app.get("/login", function (req, res) {
     "https://accounts.spotify.com/authorize?" +
       querystring.stringify({
         response_type: "code",
-        client_id: client_id,
+        client_id: CLIENT_ID,
         scope: scope,
         redirect_uri: REDIRECT_URI,
         state: state,
@@ -99,7 +98,7 @@ app.get("/callback", function (req, res) {
       headers: {
         Authorization:
           "Basic " +
-          new Buffer(client_id + ":" + client_secret).toString("base64"),
+          new Buffer(CLIENT_ID + ":" + CLIENT_SECRET).toString("base64"),
       },
       json: true,
     };
@@ -148,7 +147,7 @@ app.get("/refresh_token", function (req, res) {
     headers: {
       Authorization:
         "Basic " +
-        new Buffer(client_id + ":" + client_secret).toString("base64"),
+        new Buffer(CLIENT_ID + ":" + CLIENT_SECRET).toString("base64"),
     },
     form: {
       grant_type: "refresh_token",

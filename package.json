@@ -2,19 +2,27 @@
   "name": "hrmny",
   "version": "1.0.0",
   "description": "harmony",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client:install": "cd client && npm",
+    "client": "cd client && npm start",
+    "server": "node server",
+    "dev": "concurrently --kill-others-on-fail \"node server\" \"node client\"",
+    "start": "node server",
+    "heroku-postbuild": "cd client/ && node && node install --production && node build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^5.2.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "querystring": "^0.2.0",
     "request": "^2.88.2",
-    "spotify-web-api-js": "^1.4.0"
+    "spotify-web-api-js": "^1.4.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2"
   }
 }

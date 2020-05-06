@@ -8,6 +8,7 @@
  *
  * @format
  */
+require("dotenv").config();
 
 var express = require("express"); // Express web server framework
 var request = require("request"); // "Request" library
@@ -16,8 +17,8 @@ var querystring = require("querystring");
 var cookieParser = require("cookie-parser");
 require("dotenv").config();
 
-var client_id = "d65996108fd34cbbb3a2b00c83e701c8"; // Your client id
-var client_secret = "765099bf31cb4463aa9ca63b8f53d93b"; // Your secret
+var client_id = process.env.CLIENT_ID; // Your client id
+var client_secret = process.env.CLIENT_SECRET; // Your secret
 var redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
 
 /**

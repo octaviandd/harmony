@@ -19,7 +19,14 @@ require("dotenv").config();
 
 var client_id = process.env.CLIENT_ID; // Your client id
 var client_secret = process.env.CLIENT_SECRET; // Your secret
-var redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
+let REDIRECT_URI = process.env.REDIRECT_URI || "http://localhost:8888/callback";
+let FRONTEND_URI = process.env.FRONTEND_URI || "http://localhost:3000";
+// var redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
+
+if (process.env.NODE_ENV !== "production") {
+  REDIRECT_URI = "http://localhost:8888/callback";
+  FRONTEND_URI = "http://localhost:3000";
+}
 
 /**
  * Generates a random string containing numbers and letters
@@ -59,7 +66,7 @@ app.get("/login", function (req, res) {
         response_type: "code",
         client_id: client_id,
         scope: scope,
-        redirect_uri: redirect_uri,
+        redirect_uri: REDIRECT_URI,
         state: state,
       })
   );
@@ -86,7 +93,7 @@ app.get("/callback", function (req, res) {
       url: "https://accounts.spotify.com/api/token",
       form: {
         code: code,
-        redirect_uri: redirect_uri,
+        redirect_uri: REDIRECT_URI,
         grant_type: "authorization_code",
       },
       headers: {
@@ -115,7 +122,7 @@ app.get("/callback", function (req, res) {
 
         // we can also pass the token to the browser to make requests from there
         res.redirect(
-          "http://localhost:3000/#" +
+          `${FRONTEND_URI}/#` +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token,

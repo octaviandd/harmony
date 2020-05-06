@@ -8,9 +8,14 @@ import Note from "../UI Components/Note";
 import styled from "styled-components";
 
 export default function Login() {
+  const LOGIN_URI =
+    process.env.NODE_ENV !== "production"
+      ? "http://localhost:3000"
+      : "https://harmony-spotify-app/login";
+
   return (
     <Background>
-      <LoginButton></LoginButton>
+      <LoginButton href={LOGIN_URI}></LoginButton>
       <Circle dataset={dataset} colors={colors} style={{ index: "9999" }} />
       {new Array(3).fill().map((el, i) => (
         <Note key={i}>&#9835;</Note>

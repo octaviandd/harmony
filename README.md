@@ -55,28 +55,28 @@ Available routes:
 
 ### Login Page
 
-![](harmonylogin.png)
+![](./assets/harmonylogin.png)
 
 ### Profile Slide
 
-![](harmonyprofile.png)
+![](./assets/harmonyprofile.png)
 
 ### Favorite Artists
 
-![](harmonyartists.png)
+![](./assets/harmonyartists.png)
 
 ### User's music genres graph
 
-![](harmonygenres.png)
+![](./assets/harmonygenres.png)
 
 ### User's favorite songs
 
-![](harmonysongs.png)
+![](./assets/harmonysongs.png)
 
 ### Average composition of user's songs
 
-![](harmonycomposition.png)
+![](./assets/harmonycomposition.png)
 
 ### Music filter and recommandations
 
-![](harmonysearch.png)
+![](./assets/harmonysearch.png)

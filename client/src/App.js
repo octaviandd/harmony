@@ -5,6 +5,7 @@ import "./App.css";
 import Spotify from "spotify-web-api-js";
 import Login from "./Components/Pages/Login";
 import Home from "./Components/Pages/Home";
+import { getHashParams } from "./utils/index";
 
 const spotifyApi = new Spotify();
 
@@ -26,34 +27,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const token = this.getHashParams();
+    const token = getHashParams();
     spotifyApi.setAccessToken(token.access_token);
-    this.getUserInfo();
     this.getUserTopArtists();
     this.getUserTopTracks();
     this.setState({
       params: token,
     });
   }
-
-  getHashParams() {
-    var hashParams = {};
-    var e,
-      r = /([^&;=]+)=?([^&;]*)/g,
-      q = window.location.hash.substring(1);
-    while ((e = r.exec(q))) {
-      hashParams[e[1]] = decodeURIComponent(e[2]);
-    }
-    return hashParams;
-  }
-
-  getUserInfo = () => {
-    spotifyApi.getMe().then((result) => {
-      this.setState({
-        user_info: result,
-      });
-    });
-  };
 
   getUserTopArtists = () => {
     spotifyApi
@@ -108,8 +89,6 @@ class App extends React.Component {
       <div className="App">
         {this.state.params.hasOwnProperty("access_token") ? (
           <Home
-            params={this.state.params}
-            userInfo={this.state.user_info}
             userTopArtistsAllTime={
               this.state.user_top_artists_all_time &&
               this.state.user_top_artists_all_time

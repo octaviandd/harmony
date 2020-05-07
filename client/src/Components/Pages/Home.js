@@ -18,19 +18,17 @@ export default function Home({
   userTopArtistsFourWeeks,
 }) {
   return (
-    <ReactPageScroller>
+    // <ReactPageScroller>
+    <React.Fragment>
       <LogoSlide></LogoSlide>
       {/* <WelcomeSlide></WelcomeSlide> */}
       <ProfileSlide></ProfileSlide>
-      <ArtistsGraphSlide
-        userTopArtistsAllTime={userTopArtistsAllTime}
-        userTopArtists6Months={userTopArtists6Months}
-        userTopArtistsFourWeeks={userTopArtistsFourWeeks}
-      ></ArtistsGraphSlide>
+      <ArtistsGraphSlide></ArtistsGraphSlide>
       <GenresSlide userTopArtistsAllTime={userTopArtistsAllTime}></GenresSlide>
       <TopSongsSlide></TopSongsSlide>
       <SongDeconstructionSlide></SongDeconstructionSlide>
       <SongsRecommandationSlide></SongsRecommandationSlide>
-    </ReactPageScroller>
+    </React.Fragment>
+    // </ReactPageScroller>
   );
 }

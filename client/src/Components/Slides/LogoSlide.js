@@ -1,8 +1,8 @@
 /** @format */
 
 import React from "react";
-import mySvg from "../../hero.svg";
-import { ReactSVG } from "react-svg";
+// import mySvg from "../../assets/hero.svg"
+// import { ReactSVG } from "react-svg";
 import styled, { keyframes } from "styled-components";
 
 export default function LogoSlide() {

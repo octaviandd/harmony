@@ -1,23 +1,45 @@
 /** @format */
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Chart from "../UI Components/Chart";
-export default function SecondSlide({
-  userTopArtistsAllTime,
-  userTopArtists6Months,
-  userTopArtistsFourWeeks,
-}) {
-  const { items } = userTopArtistsAllTime;
-  const { items2 } = userTopArtists6Months;
-  const { items3 } = userTopArtistsFourWeeks;
+import Spotify from "spotify-web-api-js";
+
+const spotifyApi = new Spotify();
+
+export default function ArtistsGraphSlide({}) {
+  const [items, setItems1] = useState(undefined);
+  const [items2, setItems2] = useState(undefined);
+  const [items3, setItems3] = useState(undefined);
+
+  useEffect(() => {
+    getUserTopArtists();
+  }, []);
+
+  const getUserTopArtists = async () => {
+    await spotifyApi
+      .getMyTopArtists({ limit: 15, time_range: "long_term" })
+      .then((result) => {
+        setItems1(result);
+      });
+    await spotifyApi
+      .getMyTopArtists({ limit: 15, time_range: "short_term" })
+      .then((result) => {
+        setItems2(result);
+      });
+    await spotifyApi
+      .getMyTopArtists({ limit: 15, time_range: "medium_term" })
+      .then((result) => {
+        setItems3(result);
+      });
+  };
 
   let data1 = [];
   let data2 = [];
   let data3 = [];
 
   items &&
-    items.map((item) =>
+    items.items.map((item) =>
       data1.push({
         name: item.name,
         number: item.popularity,
@@ -26,7 +48,7 @@ export default function SecondSlide({
     );
 
   items2 &&
-    items2.map((item) =>
+    items2.items.map((item) =>
       data2.push({
         name: item.name,
         number: item.popularity,
@@ -35,7 +57,7 @@ export default function SecondSlide({
     );
 
   items3 &&
-    items3.map((item) =>
+    items3.items.map((item) =>
       data1.push({
         name: item.name,
         number: item.popularity,

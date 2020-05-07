@@ -1,23 +1,40 @@
 /** @format */
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import * as d3 from "d3";
 
+import Spotify from "spotify-web-api-js";
+
+const spotifyApi = new Spotify();
+
 export default function GenresSlide({ userTopArtistsAllTime }) {
+  // const [items, setItems] = useState(undefined)
+
+  const getUserTopArtists = async () => {
+    const res = await spotifyApi.getMyTopArtists({
+      limit: 50,
+      time_range: "long_term",
+    });
+    getData(res);
+    return getData(res);
+  };
+
   const newref = useRef();
-  const { items } = userTopArtistsAllTime;
+  // const { items } = userTopArtistsAllTime;
 
   useEffect(() => {
-    const allItems = getData(items);
+    getUserTopArtists();
+    const allItems = getUserTopArtists();
+    // const allItems = getData(items);
     if (Object.keys(allItems).length !== 0) createPie(allItems);
-  }, [items]);
+  }, []);
 
   function getData(items) {
     let genresObj = {};
     let genres = [];
     items &&
-      items.map((item) => {
+      items.items.map((item) => {
         genres.push(item.genres[0]);
         genres.push(item.genres[1]);
       });

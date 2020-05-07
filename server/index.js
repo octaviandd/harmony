@@ -10,11 +10,13 @@
  */
 require("dotenv").config({ path: "../.env" });
 
+var path = require("path");
 var express = require("express"); // Express web server framework
 var request = require("request"); // "Request" library
 var cors = require("cors");
 var querystring = require("querystring");
 var cookieParser = require("cookie-parser");
+const history = require("connect-history-api-fallback");
 
 var CLIENT_ID = process.env.CLIENT_ID; // Your client id
 var CLIENT_SECRET = process.env.CLIENT_SECRET; // Your secret
@@ -47,10 +49,27 @@ var stateKey = "spotify_auth_state";
 
 var app = express();
 
+app.use(express.static(path.resolve(__dirname, "../client/build")));
+
 app
   .use(express.static(__dirname + "/public"))
   .use(cors())
-  .use(cookieParser());
+  .use(cookieParser())
+  .use(
+    history({
+      verbose: true,
+      rewrites: [
+        { from: /\/login/, to: "/login" },
+        { from: /\/callback/, to: "/callback" },
+        { from: /\/refresh_token/, to: "/refresh_token" },
+      ],
+    })
+  )
+  .use(express.static(path.resolve(__dirname, "../client/build")));
+
+app.get("/", function (req, res) {
+  res.render(path.resolve(__dirname, "../client/build/index.html"));
+});
 
 app.get("/login", function (req, res) {
   var state = generateRandomString(16);
@@ -164,6 +183,10 @@ app.get("/refresh_token", function (req, res) {
       });
     }
   });
+});
+
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "../client/public", "index.html"));
 });
 
 console.log("Listening on 8888");

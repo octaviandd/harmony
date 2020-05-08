@@ -8,12 +8,10 @@ import Spotify from "spotify-web-api-js";
 
 const spotifyApi = new Spotify();
 
-export default function GenresSlide({ userTopArtistsAllTime }) {
-  // const [items, setItems] = useState(undefined)
-
+export default function GenresSlide() {
   const getUserTopArtists = async () => {
     const res = await spotifyApi.getMyTopArtists({
-      limit: 50,
+      limit: 15,
       time_range: "long_term",
     });
     getData(res);
@@ -21,13 +19,13 @@ export default function GenresSlide({ userTopArtistsAllTime }) {
   };
 
   const newref = useRef();
-  // const { items } = userTopArtistsAllTime;
 
   useEffect(() => {
-    getUserTopArtists();
-    const allItems = getUserTopArtists();
-    // const allItems = getData(items);
-    if (Object.keys(allItems).length !== 0) createPie(allItems);
+    let allItems;
+    getUserTopArtists().then((res) => {
+      allItems = res;
+      if (Object.keys(allItems).length !== 0) createPie(allItems);
+    });
   }, []);
 
   function getData(items) {
@@ -95,7 +93,7 @@ export default function GenresSlide({ userTopArtistsAllTime }) {
     var arc = d3
       .arc()
       .innerRadius(radius * 0.5) // This is the size of the donut hole
-      .outerRadius(radius * 0.8);
+      .outerRadius(radius * 0.95);
 
     var outerArc = d3
       .arc()

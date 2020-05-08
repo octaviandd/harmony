@@ -12,11 +12,7 @@ import ProfileSlide from "../Slides/ProfileSlide";
 import ReactPageScroller from "react-page-scroller";
 import LogoSlide from "../Slides/LogoSlide";
 
-export default function Home({
-  userTopArtistsAllTime,
-  userTopArtists6Months,
-  userTopArtistsFourWeeks,
-}) {
+export default function Home() {
   return (
     // <ReactPageScroller>
     <React.Fragment>
@@ -24,7 +20,7 @@ export default function Home({
       {/* <WelcomeSlide></WelcomeSlide> */}
       <ProfileSlide></ProfileSlide>
       <ArtistsGraphSlide></ArtistsGraphSlide>
-      <GenresSlide userTopArtistsAllTime={userTopArtistsAllTime}></GenresSlide>
+      <GenresSlide></GenresSlide>
       <TopSongsSlide></TopSongsSlide>
       <SongDeconstructionSlide></SongDeconstructionSlide>
       <SongsRecommandationSlide></SongsRecommandationSlide>

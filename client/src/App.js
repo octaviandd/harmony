@@ -20,9 +20,6 @@ class App extends React.Component {
       user_top_artists_all_time: [],
       user_top_artists_6_months: [],
       user_top_artists_four_weeks: [],
-      user_top_songs_all_time: [],
-      user_top_songs_6_months: [],
-      user_top_songs_four_weeks: [],
     };
   }
 
@@ -30,7 +27,7 @@ class App extends React.Component {
     const token = getHashParams();
     spotifyApi.setAccessToken(token.access_token);
     this.getUserTopArtists();
-    this.getUserTopTracks();
+
     this.setState({
       params: token,
     });
@@ -60,30 +57,6 @@ class App extends React.Component {
       });
   };
 
-  getUserTopTracks = () => {
-    spotifyApi
-      .getMyTopTracks({ limit: 15, time_range: "short_term" })
-      .then((result) => {
-        this.setState({
-          user_top_songs_four_weeks: result,
-        });
-      });
-    spotifyApi
-      .getMyTopTracks({ limit: 15, time_range: "medium_term" })
-      .then((result) => {
-        this.setState({
-          user_top_songs_6_months: result,
-        });
-      });
-    spotifyApi
-      .getMyTopTracks({ limit: 15, time_range: "long_term" })
-      .then((result) => {
-        this.setState({
-          user_top_songs_all_time: result,
-        });
-      });
-  };
-
   render() {
     return (
       <div className="App">
@@ -92,26 +65,6 @@ class App extends React.Component {
             userTopArtistsAllTime={
               this.state.user_top_artists_all_time &&
               this.state.user_top_artists_all_time
-            }
-            userTopArtists6Months={
-              this.state.user_top_artists_6_months &&
-              this.state.user_top_artists_6_months
-            }
-            userTopArtistsFourWeeks={
-              this.state.user_top_artists_four_weeks &&
-              this.state.user_top_artists_four_weeks
-            }
-            userTopTracksFourWeeks={
-              this.state.user_top_songs_four_weeks &&
-              this.state.user_top_songs_four_weeks
-            }
-            userTopTracks6Months={
-              this.state.user_top_songs_6_months &&
-              this.state.user_top_songs_6_months
-            }
-            userTopTracksAllTime={
-              this.state.user_top_songs_all_time &&
-              this.state.user_top_songs_all_time
             }
           ></Home>
         ) : (
